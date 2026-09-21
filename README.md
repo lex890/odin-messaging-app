@@ -41,7 +41,7 @@ TOP explicitly says real-time methods (WebSockets, Socket.io, SSE) are **not tau
 - Main chat view: sidebar (user list / conversations) + active conversation panel + message input
 
 ## Libraries (keep minimal)
-- **Backend:** Express, Postgres/SQLite (Prisma) or MongoDB (Mongoose), Passport.js or JWT, bcrypt
+- **Backend:** Express, Postgres/SQLite (Prisma) or PostgreSQL (supabase) + Prisma, Passport.js or JWT, bcrypt
 - **Frontend:** EJS/Express views or React — whatever's comfortable
 - **"Real-time":** plain `fetch` on an interval, no library required
 
