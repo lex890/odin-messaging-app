@@ -1,8 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Get a free hosted Postgres database in seconds: `npx create-db`
-
 generator client {
   provider = "prisma-client"
   output   = "../src/generated/prisma"
@@ -10,4 +5,51 @@ generator client {
 
 datasource db {
   provider = "postgresql"
+}
+
+model User {
+  id           Int      @id @default(autoincrement())
+  email        String   @unique
+  firstName    String
+  lastName     String
+  nickName     String?
+  bio          String?
+  avatarUrl    String?
+  passwordHash String
+  createdAt    DateTime @default(now())
+
+  convos   ConvoParticipant[]
+  messages Message[]
+}
+
+model Convo {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  participants ConvoParticipant[]
+  messages     Message[]
+}
+
+model ConvoParticipant {
+  userId  Int
+  convoId Int
+
+  user  User  @relation(fields: [userId], references: [id])
+  convo Convo @relation(fields: [convoId], references: [id])
+
+  @@id([userId, convoId])
+}
+
+model Message {
+  id        Int      @id @default(autoincrement())
+  content   String
+  createdAt DateTime @default(now())
+  senderId  Int
+  convoId   Int
+
+  sender User  @relation(fields: [senderId], references: [id])
+  convo  Convo @relation(fields: [convoId], references: [id])
+
+  @@index([convoId, createdAt])
 }

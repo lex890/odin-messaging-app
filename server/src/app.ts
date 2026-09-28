@@ -2,8 +2,7 @@ import express, { type Express, type Request, type Response } from 'express';
 import cors from "cors";
 import cookieParser from "cookie-parser";
 
-
-export function app() {
+export function createApp() {
   const app: Express = express();
 
 
