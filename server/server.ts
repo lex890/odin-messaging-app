@@ -1,11 +1,6 @@
 import "dotenv/config";
 
-import { createApp } from "./src/app.ts";
-
-declare const process: {
-  env: Record<string, string | undefined>;
-  exit(code?: number): never;
-};
+import { createApp } from "./src/app.js";
 
 const PORT: string | number = process.env.PORT || 3001;
 
