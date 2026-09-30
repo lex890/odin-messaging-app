@@ -2,6 +2,7 @@ import express, { type Express, type Request, type Response } from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import authRouter from "./routes/auth.routes.js"
+import userRouter from "./routes/user.routes.js"
 import { errorHandler } from "./middleware/errorHandler.js";
 
 export function createApp() {
@@ -16,6 +17,7 @@ export function createApp() {
   });
 
   app.use("/auth", authRouter);
+  app.use("/users", userRouter);
 
   app.use(errorHandler);
 
