@@ -3,6 +3,8 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import authRouter from "./routes/auth.routes.js"
 import userRouter from "./routes/user.routes.js"
+import convoRouter from "./routes/convo.routes.js"
+import messageRouter from "./routes/message.routes.js"
 import { errorHandler } from "./middleware/errorHandler.js";
 
 export function createApp() {
@@ -18,6 +20,8 @@ export function createApp() {
 
   app.use("/auth", authRouter);
   app.use("/users", userRouter);
+  app.use("/convos", convoRouter);
+  app.use("/convos", messageRouter);
 
   app.use(errorHandler);
 
